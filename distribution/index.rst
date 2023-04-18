@@ -82,7 +82,9 @@ Table of Contents
    :maxdepth: 2
 
    building-binaries
+   building-web
    list-of-build-options
    packaging-binaries
    troubleshooting
    thirdparty-licenses
+   
