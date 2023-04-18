@@ -5,37 +5,8 @@ Building for the Web
 
 Overview
 --------
- Compiling Panda3D for WebGL
 
-Contents
-
-
-1  Building for the Web
-
-  1.1  Requirements
-  1.2  Compiling Panda3D
-  1.3  Compiling the demos
-  1.4  Troubleshooting
-  1.5  Suggested Modifications
-2  Best Practices
-
-  2.1  Enable gzip compression
-  2.2  Limit HTTP requests
-  2.3  Loading Textures
-3  Supplemental Modules
-
-  3.1  Including the modules
-  3.2  Interacting with JavaScript APIs
-  3.3  Asynchronous Loading
-  3.4  Asyncify
-Building for the Web
-
-The Panda3D WebGL port is an attempt to get Panda3D to run in the browser without a plug-in. It does this by using emscripten to compile the Panda3D and Python libraries to WebAssembly, a binary intermediate language which can be JIT-compiled by modern browsers and executed by their JavaScript virtual machine.
-
-This is a small guide explaining how to use the WebGL port to compile a Panda3D application for the web.
-Requirements
-
-The instructions assume you are on Linux or a UNIX OS. Other operating systems may work, but I have not tested them.
+Panda3D is able to run on the web using emscripten to compile the Panda3D and Python libraries to WebAssembly, a binary intermediate language which can be JIT-compiled by modern browsers and executed by their JavaScript virtual machine. The instructions assume you are on Linux or a UNIX OS. Windows will be added later.
 
 You need to be prepared to deal with build systems, as well as have some basic knowledge of C to be able to adjust the code that bootstraps the application.
 
@@ -43,10 +14,11 @@ You will need to download and install the following software on the host system:
 
     Git
     Emscripten SDK
-    Python 3.8
+    Python (at least 3.8)
     Panda3D SDK (at least 1.10.9)
 
 Compiling Panda3D
+-----------------
 
 Check out the WebGL branch from GitHub using this command:
 
@@ -58,14 +30,13 @@ Now, get this zip file containing the precompiled dependencies and samples and e
 wget https://rdb.name/webgl-editor-and-dependencies.zip
 unzip webgl-editor-and-dependencies.zip
 
-I am assuming you have set up and configured the Emscripten SDK at this point. Now you can go ahead and compile Panda3D, which you must do using Python 3.8:
+I am assuming you have set up and configured the Emscripten SDK at this point. Now you can go ahead and compile Panda3D:
 
 source /home/rdb/local/src/emsdk/emsdk_env.sh
 python3.8 makepanda/makepanda.py --nothing --use-python --use-vorbis --use-bullet --use-zlib --use-freetype --use-harfbuzz --use-openal --no-png --use-direct --use-gles2 --optimize 4 --static --target emscripten --threads 4
 
-You will need a copy of interrogate present on the host for this process. Having Panda3D installed on the host satisfies this need. You could alternatively choose to create an interrogate.js as part of the build and run it using Node.js, but let's not make things difficult.
+Before you move on, please check the output to make sure that the build ended successfully. If you run into errors, feel free to ask on the forums or on the Panda3D Discord server.
 
-Before you move on, please check the output to make sure that the build ended successfully. If you run into errors, feel free to ask on the forums or ping me on the Panda3D Discord server.
 Compiling the demos
 
 The zip file also contains two examples, the editor application and Roaming Ralph. Both include a freezify.py script that does the actual compilation for the web. Please study this file and modify it to correct the paths for your configuration.
