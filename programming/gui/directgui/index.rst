@@ -134,6 +134,7 @@ DirectGUI
    suppressMouse     If 1, suppresses triggers of global mouse-related Panda events (e.g. camera controls)                                                                                                                            0 or 1
    sortOrder         Specifies render order for overlapping objects. Higher numbers are drawn in front of lower numbers.                                                                                                              Number
    textMayChange     Whether the text of an object can be changed after creation                                                                                                                                                      0 or 1
+   borderUvWidth     Allows for 9-slice scaling                                                                                                                                                                                       (U, V)
    ================= ================================================================================================================================================================================================================ =========================================================
 
    Remember that the axes for Panda3D use x for left and right, y for in and out
